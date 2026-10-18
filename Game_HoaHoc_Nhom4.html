@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#09132f">
+<title>CHEMICAL QUEST — Nitrogen N₂</title>
+<style>
+:root{color-scheme:dark;--bg:#071025;--panel:#101c3d;--panel2:#14234a;--cyan:#48e3f4;--purple:#9b7cff;--text:#f3f6ff;--muted:#aab7d8;--green:#56e3a1;--red:#ff6b87;--line:#293b68;--radius:20px}
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#18265b 0,transparent 42%),radial-gradient(ellipse at 95% 15%,#28205d 0,transparent 34%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+button:disabled{cursor:not-allowed;opacity:.55}
+.app{width:min(1120px,100%);margin:auto;padding:24px clamp(14px,3vw,30px) calc(28px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:30px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#071025;font-weight:950;font-size:18px;box-shadow:0 0 28px #48e3f42a;flex-shrink:0}
+.brand-title{font-weight:900;letter-spacing:.09em;font-size:clamp(15px,2.5vw,21px)}
+.brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
+nav{display:flex;gap:8px;overflow-x:auto;max-width:100%;padding:4px;scrollbar-width:thin}
+.nav-btn,.secondary{background:#111d3a;border:1px solid var(--line);color:var(--text);border-radius:12px;padding:10px 14px;min-height:44px;white-space:nowrap}
+.nav-btn[aria-current="page"]{border-color:var(--cyan);color:var(--cyan);background:#17304a}
+.nav-btn:hover,.secondary:hover{border-color:var(--cyan)}
+main{min-height:55vh}
+.view{animation:appear .2s ease}
+@keyframes appear{from{opacity:.6;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center;padding:clamp(22px,4vw,42px);border:1px solid #344779;background:linear-gradient(135deg,#121f43eF,#11162feF);border-radius:28px;box-shadow:0 24px 80px #0002}
+.eyebrow{color:var(--cyan);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+h1{font-size:clamp(32px,5vw,58px);line-height:1.04;letter-spacing:-.04em;margin:12px 0 16px}
+.gradient{background:linear-gradient(90deg,var(--cyan),#b5a1ff);color:transparent;background-clip:text}
+p{line-height:1.65;color:var(--muted)}
+.hero p{max-width:600px}
+.hero-art{min-height:230px;display:grid;place-items:center;position:relative;overflow:hidden}
+.orbit{width:min(270px,70vw);aspect-ratio:1;border:1px solid #48e3f455;border-radius:50%;display:grid;place-items:center;position:relative;box-shadow:0 0 60px #48e3f415,inset 0 0 50px #9b7cff12}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #9b7cff66;border-radius:50%;width:76%;height:34%;transform:rotate(55deg)}
+.orbit:after{transform:rotate(-55deg)}
+.molecule{font-size:clamp(42px,7vw,66px);font-weight:950;letter-spacing:-.06em;color:var(--cyan);text-shadow:0 0 30px #48e3f477;z-index:1}
+.dot{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--purple);box-shadow:0 0 20px var(--purple)}
+.dot.one{top:20%;left:20%}.dot.two{right:12%;bottom:26%;background:var(--cyan)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.primary{border:0;border-radius:13px;min-height:48px;padding:12px 20px;font-weight:850;color:#061128;background:linear-gradient(100deg,var(--cyan),#9d9cff);box-shadow:0 8px 24px #48e3f425}
+.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.secondary{font-weight:700}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin:10px 0 20px}
+h2{font-size:clamp(25px,3.5vw,36px);margin:0 0 8px;letter-spacing:-.03em}
+h3{margin:0 0 8px;font-size:19px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
+.stat,.panel,.level-card{border:1px solid var(--line);background:#101a36d9;border-radius:var(--radius);padding:18px}
+.stat strong{display:block;font-size:clamp(21px,3vw,28px);margin-bottom:4px}
+.stat span{color:var(--muted);font-size:13px}
+.level-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.level-card{display:flex;flex-direction:column;min-height:250px;position:relative;overflow:hidden}
+.level-card:before{content:"";position:absolute;right:-35px;top:-45px;width:120px;height:120px;border-radius:50%;background:#48e3f410}
+.level-num{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.level-card p{font-size:14px;flex:1}
+.level-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:10px 0 16px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:5px 9px}
+.locked{opacity:.7}
+.locked .level-num{color:#b9a9ff}
+.progress-track{height:7px;background:#263354;border-radius:99px;overflow:hidden;margin-top:12px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));width:0;transition:width .2s}
+.game-top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}
+.metric{border:1px solid var(--line);border-radius:14px;background:#101a36;padding:12px;min-width:0}
+.metric span{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}
+.metric strong{font-size:clamp(17px,2.4vw,23px);white-space:nowrap}
+.question-panel{padding:clamp(18px,3vw,30px);border:1px solid #344779;background:linear-gradient(140deg,#111d3d,#10162f);border-radius:24px}
+.question-label{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--cyan);font-weight:800;font-size:13px}
+.timer-track{height:8px;background:#293454;border-radius:99px;overflow:hidden;margin:16px 0 24px}
+.timer-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--green),var(--cyan));transition:width .2s linear}
+.timer-fill.low{background:linear-gradient(90deg,#ffb454,var(--red))}
+.question-text{font-size:clamp(20px,3vw,29px);line-height:1.35;margin:0 0 22px}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.answer{display:flex;align-items:flex-start;text-align:left;gap:12px;min-height:62px;padding:14px;border-radius:14px;border:1px solid #34436b;background:#141f40;color:var(--text);line-height:1.45}
+.answer:hover:not(:disabled){border-color:var(--cyan);background:#18294c}
+.answer-key{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:9px;background:#26345b;color:var(--cyan);font-weight:900}
+.answer.correct{border-color:var(--green);background:#14392f}.answer.correct .answer-key{background:var(--green);color:#062218}
+.answer.wrong{border-color:var(--red);background:#3a1d34}.answer.wrong .answer-key{background:var(--red);color:#2a0611}
+.feedback{margin-top:18px;padding:16px;border-radius:14px;border:1px solid var(--line);background:#0c1630}
+.feedback.good{border-color:#287d60}.feedback.bad{border-color:#8b3650}
+.feedback strong{display:block;margin-bottom:6px}
+.question-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px}
+.result-hero{text-align:center;padding:28px 10px}
+.result-score{font-size:clamp(44px,8vw,76px);font-weight:950;letter-spacing:-.06em;color:var(--cyan)}
+.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}
+.badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.badge-card{border:1px solid var(--line);border-radius:16px;padding:15px;background:#101a36}
+.badge-card.earned{border-color:#927cff;background:#201c45}
+.badge-icon{font-size:26px;margin-bottom:8px}
+.badge-card p{font-size:13px;margin:4px 0 0}
+.empty{padding:36px 18px;text-align:center;border:1px dashed var(--line);border-radius:18px;color:var(--muted)}
+footer{text-align:center;color:#8190b6;font-size:12px;margin-top:28px}
+[hidden]{display:none!important}
+@media(max-width:760px){.app{padding-top:14px}header{align-items:flex-start;flex-direction:column;gap:12px;margin-bottom:22px}nav{width:100%;max-width:100%}.hero{grid-template-columns:1fr}.hero-art{min-height:170px;grid-row:1}.orbit{width:170px}.hero{padding:22px}.level-grid{grid-template-columns:1fr}.level-card{min-height:0}.game-top{grid-template-columns:repeat(2,minmax(0,1fr))}.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.app{padding-left:12px;padding-right:12px}.brand-sub{font-size:11px}.logo{width:40px;height:40px}.hero{border-radius:20px}.hero-art{min-height:145px}.orbit{width:140px}.actions{display:grid;grid-template-columns:1fr}.actions button{width:100%}.answers{grid-template-columns:1fr;gap:10px}.answer{min-height:58px;padding:12px}.metric{padding:10px}.metric span{font-size:11px}.metric strong{font-size:19px}.question-panel{padding:16px;border-radius:18px}.question-actions{align-items:stretch}.question-actions button{flex:1}.badges{grid-template-columns:1fr}.result-grid{gap:8px}.stat{padding:13px}}
+@media(orientation:landscape) and (max-height:520px){.app{padding-top:10px}.hero{grid-template-columns:1fr 240px;padding:20px}.hero-art{grid-column:2;grid-row:1}.orbit{width:190px}.hero h1{font-size:36px}.level-card{min-height:210px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><div class="logo" aria-hidden="true">N₂</div><div><div class="brand-title">CHEMICAL QUEST</div><div class="brand-sub">HÓA HỌC 11 · NITROGEN MISSION</div></div></div>
+  <nav aria-label="Điều hướng chính">
+    <button class="nav-btn" data-view="home" aria-current="page">Trang chủ</button>
+    <button class="nav-btn" data-view="levels">Chọn level</button>
+    <button class="nav-btn" data-view="achievements">Thành tích</button>
+  </nav>
+</header>
+<main>
+<section class="view" id="home-view">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Mission · Nitrogen N₂</div>
+      <h1>Khám phá thế giới <span class="gradient">Nitrogen</span></h1>
+      <p>Vượt qua 3 cấp độ thử thách, trả lời câu hỏi Hóa học và mở khóa huy hiệu. Cậu đã sẵn sàng cho nhiệm vụ khoa học chưa?</p>
+      <div class="actions"><button class="primary" id="start-btn">Bắt đầu nhiệm vụ →</button><button class="secondary" id="continue-btn">Tiếp tục level</button></div>
+    </div>
+    <div class="hero-art" aria-label="Minh họa phân tử nitrogen"><div class="orbit"><span class="molecule">N≡N</span><i class="dot one"></i><i class="dot two"></i></div></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><strong id="home-best">0</strong><span>Điểm cao nhất</span></div>
+    <div class="stat"><strong id="home-unlocked">1/3</strong><span>Level đã mở khóa</span></div>
+    <div class="stat"><strong id="home-badges">0/4</strong><span>Huy hiệu đã đạt</span></div>
+  </div>
+</section>
+<section class="view" id="levels-view" hidden>
+  <div class="section-head"><div><div class="eyebrow">Choose your challenge</div><h2>Chọn level</h2><p>Mỗi level gồm 5 câu hỏi · 25 giây mỗi câu.</p></div></div>
+  <div class="level-grid" id="level-grid"></div>
+</section>
+<section class="view" id="game-view" hidden>
+  <div class="game-top">
+    <div class="metric"><span>ĐIỂM</span><strong id="score">0</strong></div>
+    <div class="metric"><span>MẠNG SỐNG</span><strong id="lives">❤️❤️❤️</strong></div>
+    <div class="metric"><span>STREAK</span><strong id="streak">0 🔥</strong></div>
+    <div class="metric"><span>THỜI GIAN</span><strong id="timer">25s</strong></div>
+  </div>
+  <div class="question-panel">
+    <div class="question-label"><span id="level-label">LEVEL 1</span><span id="question-count">CÂU 1/5</span></div>
+    <div class="progress-track" aria-label="Tiến độ level"><div class="progress-fill" id="question-progress"></div></div>
+    <div class="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+    <h2 class="question-text" id="question-text"></h2>
+    <div class="answers" id="answers"></div>
+    <div id="feedback" class="feedback" hidden aria-live="polite"></div>
+    <div class="question-actions"><span id="status-text" style="color:var(--muted);font-size:13px">Chọn đáp án đúng nhất.</span><button class="primary" id="next-btn" disabled>Câu tiếp theo →</button></div>
+  </div>
+</section>
+<section class="view" id="result-view" hidden>
+  <div class="panel result-hero"><div class="eyebrow">Mission report</div><h2 id="result-title">Hoàn thành nhiệm vụ!</h2><div class="result-score" id="result-score">0</div><p id="result-message"></p>
+    <div class="result-grid">
+      <div class="stat"><strong id="result-correct">0/5</strong><span>Câu đúng</span></div>
+      <div class="stat"><strong id="result-accuracy">0%</strong><span>Độ chính xác</span></div>
+      <div class="stat"><strong id="result-time">0s</strong><span>Thời gian</span></div>
+      <div class="stat"><strong id="result-wrong">0</strong><span>Câu sai / hết giờ</span></div>
+      <div class="stat"><strong id="result-lives">❤️❤️❤️</strong><span>Mạng còn lại</span></div>
+      <div class="stat"><strong id="result-streak">0</strong><span>Streak tốt nhất</span></div>
+    </div>
+    <div id="unlock-message"></div>
+    <div class="actions" style="justify-content:center"><button class="primary" id="replay-btn">Chơi lại level</button><button class="secondary" id="levels-btn">Chọn level</button><button class="secondary" id="home-btn">Về trang chủ</button></div>
+  </div>
+  <div class="panel" style="margin-top:16px"><h3>Huy hiệu vừa đạt</h3><div id="new-badges" class="badges"></div></div>
+</section>
+<section class="view" id="achievements-view" hidden>
+  <div class="section-head"><div><div class="eyebrow">Your science profile</div><h2>Thành tích</h2><p>Những cột mốc cậu đã chinh phục trong hành trình Nitrogen.</p></div></div>
+  <div class="stats" style="margin-bottom:18px"><div class="stat"><strong id="ach-best">0</strong><span>Điểm cao nhất</span></div><div class="stat"><strong id="ach-played">0</strong><span>Level đã hoàn thành</span></div><div class="stat"><strong id="ach-unlocked">1/3</strong><span>Level mở khóa</span></div></div>
+  <div class="badges" id="badge-list"></div>
+</section>
+</main>
+<footer>CHEMICAL QUEST · HÓA HỌC 11 · Học tập an toàn, chinh phục từng câu hỏi.</footer>
+</div>
+<script>
+"use strict";
+const LEVELS=[
+ {name:"Nitrogen Basics",desc:"Nắm vững tính chất vật lí, cấu tạo và vai trò cơ bản của nitrogen.",questions:[
+  {q:"Ở điều kiện thường, đơn chất nitrogen tồn tại chủ yếu dưới dạng nào?",a:["Chất khí, phân tử hai nguyên tử N₂","Chất lỏng màu xanh","Chất rắn màu trắng","Nguyên tử N riêng lẻ"],c:0,e:"Ở điều kiện thường, nitrogen là chất khí không màu, không mùi, gồm các phân tử N₂."},
+  {q:"Liên kết giữa hai nguyên tử nitrogen trong phân tử N₂ là loại liên kết nào?",a:["Liên kết đơn","Liên kết đôi","Liên kết ba","Liên kết ion"],c:2,e:"Hai nguyên tử N liên kết với nhau bằng liên kết ba rất bền: N≡N."},
+  {q:"Thành phần thể tích nitrogen trong không khí khô xấp xỉ bao nhiêu?",a:["21%","78%","1%","50%"],c:1,e:"Nitrogen chiếm khoảng 78% thể tích không khí khô; oxygen chiếm khoảng 21%."},
+  {q:"Ở điều kiện thường, nitrogen có tính chất nào sau đây?",a:["Màu vàng và mùi hắc","Tan rất nhiều trong nước","Không màu, ít tan trong nước","Là chất lỏng dễ cháy"],c:2,e:"N₂ là chất khí không màu, không mùi và ít tan trong nước."},
+  {q:"Công thức hóa học của đơn chất nitrogen là gì?",a:["N","N₂","N₃","NO₂"],c:1,e:"Nitrogen tồn tại bền ở dạng phân tử hai nguyên tử N₂."}
+ ]},
+ {name:"Nitrogen Challenge",desc:"Thử thách phản ứng hóa học và khả năng vận dụng kiến thức.",questions:[
+  {q:"Phản ứng trực tiếp giữa nitrogen và hydrogen tạo ra chất nào?",a:["NH₃","HNO₃","NO₂","N₂O"],c:0,e:"N₂ phản ứng với H₂ tạo ammonia: N₂ + 3H₂ ⇌ 2NH₃ (điều kiện thích hợp)."},
+  {q:"Trong phản ứng N₂ + 3H₂ ⇌ 2NH₃, nitrogen thể hiện vai trò gì?",a:["Chỉ là chất xúc tác","Chất oxi hóa","Dung môi","Không tham gia phản ứng"],c:1,e:"Số oxi hóa của N giảm từ 0 xuống −3, nên N₂ nhận electron và đóng vai trò chất oxi hóa."},
+  {q:"Ở nhiệt độ cao, nitrogen có thể phản ứng với oxygen tạo thành chất nào trước tiên?",a:["NO","NH₃","NaNO₃","H₂O"],c:0,e:"Ở nhiệt độ rất cao, N₂ phản ứng với O₂ tạo NO: N₂ + O₂ ⇌ 2NO."},
+  {q:"Vì sao nitrogen khá trơ ở điều kiện thường?",a:["Vì N₂ có liên kết ba rất bền","Vì nitrogen có khối lượng rất lớn","Vì N₂ là kim loại","Vì N₂ tan hoàn toàn trong nước"],c:0,e:"Liên kết ba N≡N có năng lượng liên kết lớn, khiến phân tử N₂ khó phản ứng ở điều kiện thường."},
+  {q:"Số oxi hóa của nitrogen trong phân tử N₂ là bao nhiêu?",a:["+1","−3","0","+5"],c:2,e:"Trong đơn chất, số oxi hóa của nguyên tố bằng 0."}
+ ]},
+ {name:"Nitrogen Master",desc:"Chinh phục câu hỏi tổng hợp về tính chất và ứng dụng của nitrogen.",questions:[
+  {q:"Phương trình nào biểu diễn đúng phản ứng của nitrogen với hydrogen tạo ammonia?",a:["N₂ + H₂ → NH₃","N₂ + 3H₂ ⇌ 2NH₃","2N₂ + H₂ → 2NH₃","N₂ + 2H₂ → NH₄"],c:1,e:"Phương trình cân bằng đúng là N₂ + 3H₂ ⇌ 2NH₃."},
+  {q:"Nitrogen lỏng thường được sử dụng trong lĩnh vực nào?",a:["Làm chất oxi hóa trong mọi phản ứng","Làm lạnh sâu và bảo quản mẫu","Làm nhiên liệu cháy trong không khí","Tạo màu cho nước"],c:1,e:"Nitrogen lỏng có nhiệt độ sôi rất thấp nên được dùng để làm lạnh sâu, bảo quản mẫu sinh học và trong nghiên cứu."},
+  {q:"Phát biểu nào đúng về khả năng duy trì sự cháy của nitrogen?",a:["N₂ duy trì sự cháy mạnh hơn O₂","N₂ thường không duy trì sự cháy","N₂ luôn tự bốc cháy","N₂ là chất oxi hóa mạnh ở điều kiện thường"],c:1,e:"Do khá trơ ở điều kiện thường, nitrogen thường không duy trì sự cháy như oxygen."},
+  {q:"Trong phản ứng N₂ + O₂ → 2NO (ở nhiệt độ cao), chất nào bị oxi hóa?",a:["Nitrogen","Oxygen","Cả hai đều không đổi số oxi hóa","Không có chất nào"],c:0,e:"N tăng số oxi hóa từ 0 lên +2 nên nitrogen bị oxi hóa; oxygen giảm từ 0 xuống −2."},
+  {q:"Lí do chính khiến nitrogen được dùng tạo môi trường trơ trong một số quy trình là gì?",a:["Dễ phản ứng với hầu hết chất","Khá trơ ở điều kiện thường","Có màu dễ nhận biết","Tan mạnh trong nước"],c:1,e:"Nitrogen tương đối trơ ở điều kiện thường, giúp hạn chế tiếp xúc với oxygen trong một số quy trình phù hợp."}
+ ]}
+];
+const BADGES=[
+ {id:"atomic",name:"Atomic Master",icon:"⚛️",desc:"Hoàn thành một level với ít nhất 70% câu đúng.",test:r=>r.accuracy>=70},
+ {id:"streak",name:"Perfect Streak",icon:"🔥",desc:"Trả lời đúng liên tiếp 3 câu trong một lượt.",test:r=>r.bestStreak>=3},
+ {id:"explorer",name:"Chemistry Explorer",icon:"🧪",desc:"Hoàn thành level đầu tiên.",test:r=>r.level===0&&r.completed},
+ {id:"nitrogen",name:"Nitrogen Master",icon:"🏆",desc:"Hoàn thành cả 3 level với ít nhất 70% câu đúng ở mỗi level.",test:(r,s)=>s.completed.every(Boolean)}
+];
+const STORAGE="chemicalQuestNitrogen_v1";
+const defaultSave=()=>({bestScore:0,unlocked:1,completed:[false,false,false],bestByLevel:[0,0,0],badges:[],played:0});
+let save=loadSave(),state=null,timerId=null,questionStarted=0,questionLocked=false;
+function loadSave(){try{const x=JSON.parse(localStorage.getItem(STORAGE));return x&&Array.isArray(x.completed)&&Array.isArray(x.badges)?{...defaultSave(),...x}:defaultSave()}catch{return defaultSave()}}
+function persist(){try{localStorage.setItem(STORAGE,JSON.stringify(save))}catch{}}
+function $(id){return document.getElementById(id)}
+function showView(name){stopTimer();document.querySelectorAll(".view").forEach(v=>v.hidden=true);$(name+"-view").hidden=false;document.querySelectorAll(".nav-btn").forEach(b=>{if(b.dataset.view===name)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});if(name==="home")renderHome();if(name==="levels")renderLevels();if(name==="achievements")renderAchievements();window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll(".nav-btn").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+$("start-btn").addEventListener("click",()=>showView("levels"));
+$("continue-btn").addEventListener("click",()=>startLevel(Math.min(save.unlocked-1,2)));
+$("levels-btn").addEventListener("click",()=>showView("levels"));
+$("home-btn").addEventListener("click",()=>showView("home"));
+$("replay-btn").addEventListener("click",()=>startLevel(state?state.level:0));
+$("next-btn").addEventListener("click",nextQuestion);
+function renderHome(){$("home-best").textContent=save.bestScore;$("home-unlocked").textContent=Math.min(save.unlocked,3)+"/3";$("home-badges").textContent=save.badges.length+"/4";$("continue-btn").textContent=save.completed[Math.min(save.unlocked-1,2)]?"Chơi level đã mở →":"Tiếp tục level →"}
+function renderLevels(){
+ const grid=$("level-grid");grid.innerHTML="";
+ LEVELS.forEach((l,i)=>{const open=i<save.unlocked,card=document.createElement("article");card.className="level-card"+(open?"":" locked");const best=save.bestByLevel[i]||0;
+ card.innerHTML=`<div class="level-num">${open?"LEVEL "+(i+1):"🔒 LEVEL "+(i+1)}</div><h3>${l.name}</h3><p>${l.desc}</p><div class="level-meta"><span class="pill">5 câu hỏi</span><span class="pill">25 giây/câu</span><span class="pill">${save.completed[i]?"✓ Đã hoàn thành":open?"Đã mở khóa":"Chưa mở khóa"}</span></div><div style="font-size:13px;color:var(--muted)">Điểm tốt nhất: <strong style="color:var(--text)">${best}</strong></div><div class="actions"><button class="${open?"primary":"secondary"}" ${open?"":"disabled"}>${open?(save.completed[i]?"Chơi lại level":"Bắt đầu level"):"Cần hoàn thành level trước"}</button></div>`;
+ if(open)card.querySelector("button").addEventListener("click",()=>startLevel(i));grid.appendChild(card)});
+}
+function startLevel(index){
+ if(index<0||index>=save.unlocked)return;
+ stopTimer();state={level:index,index:0,score:0,lives:3,streak:0,bestStreak:0,correct:0,wrong:0,started:Date.now(),earnedBefore:[...save.badges],finished:false};
+ showView("game");renderQuestion();
+}
+function stopTimer(){if(timerId!==null){clearInterval(timerId);timerId=null}}
+function renderQuestion(){
+ stopTimer();if(!state||state.finished)return;
+ questionLocked=false;const q=LEVELS[state.level].questions[state.index];
+ $("level-label").textContent="LEVEL "+(state.level+1)+" · "+LEVELS[state.level].name.toUpperCase();
+ $("question-count").textContent="CÂU "+(state.index+1)+"/5";
+ $("question-progress").style.width=(state.index/5*100)+"%";
+ $("question-text").textContent=q.q;$("answers").innerHTML="";$("feedback").hidden=true;$("next-btn").disabled=true;$("next-btn").textContent=state.index===4?"Xem kết quả →":"Câu tiếp theo →";$("status-text").textContent="Chọn đáp án đúng nhất.";
+ q.a.forEach((answer,i)=>{const b=document.createElement("button");b.className="answer";b.innerHTML=`<span class="answer-key">${"ABCD"[i]}</span><span></span>`;b.lastElementChild.textContent=answer;b.addEventListener("click",()=>answerQuestion(i));$("answers").appendChild(b)});
+ questionStarted=Date.now();let remaining=25;updateTimer(remaining);timerId=setInterval(()=>{if(questionLocked)return;remaining=Math.max(0,25-Math.floor((Date.now()-questionStarted)/1000));updateTimer(remaining);if(remaining<=0)answerQuestion(-1,true)},200);
+}
+function updateTimer(s){$("timer").textContent=s+"s";$("timer-fill").style.width=(s/25*100)+"%";$("timer-fill").classList.toggle("low",s<=7)}
+function answerQuestion(choice,timedOut=false){
+ if(questionLocked||!state||state.finished)return;questionLocked=true;stopTimer();
+ const q=LEVELS[state.level].questions[state.index],correct=choice===q.c;
+ document.querySelectorAll(".answer").forEach((b,i)=>{b.disabled=true;if(i===q.c)b.classList.add("correct");if(i===choice&&!correct)b.classList.add("wrong")});
+ if(correct){state.correct++;state.streak++;state.bestStreak=Math.max(state.bestStreak,state.streak);state.score+=100;if(state.streak>0&&state.streak%3===0)state.score+=50}
+ else{state.wrong++;state.streak=0;state.lives=Math.max(0,state.lives-1)}
+ $("score").textContent=state.score;$("lives").textContent="❤️".repeat(state.lives)+"🖤".repeat(3-state.lives);$("streak").textContent=state.streak+" 🔥";
+ const fb=$("feedback");fb.hidden=false;fb.className="feedback "+(correct?"good":"bad");
+ const lead=correct?"Chính xác! +"+(state.streak%3===0?150:100)+" điểm.":timedOut?"Hết giờ! Mất 1 mạng.":"Chưa chính xác. Mất 1 mạng.";
+ fb.innerHTML="";const strong=document.createElement("strong");strong.textContent=lead;const explain=document.createElement("div");explain.textContent=q.e;fb.append(strong,explain);
+ $("question-progress").style.width=((state.index+1)/5*100)+"%";$("status-text").textContent=state.lives===0?"Đã hết mạng. Lượt chơi kết thúc.":"Đáp án đã được ghi nhận.";
+ $("next-btn").disabled=false;if(state.lives===0)$("next-btn").textContent="Xem kết quả →";
+}
+function nextQuestion(){if(!state||!questionLocked)return;if(state.lives<=0||state.index>=4){finishLevel();return}state.index++;renderQuestion()}
+function finishLevel(){
+ stopTimer();if(!state||state.finished)return;state.finished=true;
+ const level=state.level,accuracy=Math.round(state.correct/5*100),elapsed=Math.max(0,Math.round((Date.now()-state.started)/1000));
+ const passed=accuracy>=70;
+ save.played++;save.bestScore=Math.max(save.bestScore,state.score);save.bestByLevel[level]=Math.max(save.bestByLevel[level]||0,state.score);
+ if(passed){save.completed[level]=true;if(level+1<3)save.unlocked=Math.max(save.unlocked,level+2)}
+ const report={level,accuracy,bestStreak:state.bestStreak,completed:passed};
+ BADGES.forEach(b=>{if(!save.badges.includes(b.id)&&b.test(report,save))save.badges.push(b.id)});
+ if(save.completed.every(Boolean)&&accuracy>=70&&!save.badges.includes("nitrogen"))save.badges.push("nitrogen");
+ persist();
+ $("result-title").textContent=state.lives===0?"Nhiệm vụ kết thúc!":passed?"Level hoàn thành!":"Cố gắng thêm nhé!";
+ $("result-score").textContent=state.score+" điểm";$("result-message").textContent=passed?"Cậu đạt "+accuracy+"% chính xác và "+(level<2?"đã mở khóa level tiếp theo.":"đã hoàn thành level cuối!"):"Cậu cần đạt ít nhất 70% số câu đúng để mở khóa level tiếp theo. Hãy ôn lại phần giải thích và thử lại nhé.";
+ $("result-correct").textContent=state.correct+"/5";$("result-accuracy").textContent=accuracy+"%";$("result-time").textContent=elapsed+"s";$("result-wrong").textContent=state.wrong;$("result-lives").textContent="❤️".repeat(state.lives)+"🖤".repeat(3-state.lives);$("result-streak").textContent=state.bestStreak;
+ $("unlock-message").textContent=passed?(level<2?"🔓 Đã mở khóa: "+LEVELS[level+1].name:"🏆 Cậu đã chinh phục cả 3 level!"):"";
+ const fresh=save.badges.filter(id=>!state.earnedBefore.includes(id));renderBadgeCards($("new-badges"),fresh);showView("result");
+}
+function renderBadgeCards(container,ids){container.innerHTML="";if(!ids.length){container.innerHTML='<div class="empty" style="grid-column:1/-1">Chưa có huy hiệu mới ở lượt này. Tiếp tục cố gắng nhé!</div>';return}
+ ids.forEach(id=>{const b=BADGES.find(x=>x.id===id);if(!b)return;const el=document.createElement("div");el.className="badge-card earned";el.innerHTML=`<div class="badge-icon">${b.icon}</div><h3>${b.name}</h3><p>${b.desc}</p>`;container.appendChild(el)})}
+function renderAchievements(){
+ $("ach-best").textContent=save.bestScore;$("ach-played").textContent=save.completed.filter(Boolean).length;$("ach-unlocked").textContent=Math.min(save.unlocked,3)+"/3";
+ const list=$("badge-list");list.innerHTML="";BADGES.forEach(b=>{const earned=save.badges.includes(b.id),el=document.createElement("div");el.className="badge-card"+(earned?" earned":"");el.innerHTML=`<div class="badge-icon">${earned?b.icon:"🔒"}</div><h3>${b.name}</h3><p>${b.desc}</p><p style="color:${earned?"var(--green)":"var(--muted)"};font-weight:800">${earned?"ĐÃ ĐẠT":"CHƯA ĐẠT"}</p>`;list.appendChild(el)})
+}
+renderHome();renderLevels();renderAchievements();
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&timerId!==null){/* elapsed time is calculated from a timestamp; the countdown remains accurate when the tab returns */}});
+</script>
+</body>
+</html>
